@@ -17,13 +17,9 @@ const eventSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Event endtime is required']
     },
-    CategoryColor: {
-      type: String,
-    },
     Description: {
       type: String,
     },
-  
 })
 
 const Event = mongoose.model('Event', eventSchema);

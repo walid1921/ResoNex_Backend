@@ -11,7 +11,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "node server.js"
+    "server": "node server.js",
+    "nodemonServer": "nodemon server.js"
   },
   "author": "",
   "license": "ISC"

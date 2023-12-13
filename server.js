@@ -3,7 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors')
 
-const eventRoute = require('./routes/eventRoute'); 
+const eventRoute = require('./routes/eventRoute');
+// const storeAndDeleteRoute = require('./routes/storeAndDeleteRoute') 
 const errorMiddleware = require('./middleware/errorMiddleware');
 
 
@@ -30,6 +31,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.use('/api/events', eventRoute);
+// app.use('/api/storeAndDelete', storeAndDeleteRoute);
 app.use(errorMiddleware)
 
 
