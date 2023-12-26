@@ -8,7 +8,7 @@ const eventRoute = require('./routes/eventRoute');
 const errorMiddleware = require('./middleware/errorMiddleware');
 
 
-// for testin
+// for test 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
