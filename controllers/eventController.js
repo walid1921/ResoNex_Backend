@@ -1,5 +1,5 @@
-const Event = require('../models/eventModel');
-const asyncHandler = require('express-async-handler');
+const Event = require("../models/eventModel");
+const asyncHandler = require("express-async-handler");
 
 //! Get all events
 const getEvents = asyncHandler(async (req, res) => {
@@ -12,31 +12,16 @@ const getEvents = asyncHandler(async (req, res) => {
   }
 });
 
-
 //! Create an event
-const createEvent = async (req, res) => {
+const createEvent = asyncHandler(async (req, res) => {
   try {
-    const { _id, Subject, Location, StartTime, EndTime, Description } = req.body;
-
-    const newEvent = new Event({
-      _id,
-      Subject,
-      Location,
-      StartTime,
-      EndTime,
-      Description,
-    });
-
-    await newEvent.save();
-
-    res.status(201).json(newEvent);
+    const newEvent = await Event.create(req.body);
+    res.status(200).json(newEvent);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
-};
-
-
+});
 
 //! Delete an event
 const deleteEvent = asyncHandler(async (req, res) => {
@@ -54,7 +39,6 @@ const deleteEvent = asyncHandler(async (req, res) => {
   }
 });
 
-
 module.exports = {
   getEvents,
   createEvent,
@@ -63,8 +47,6 @@ module.exports = {
   // getEvent,
   // deleteAllEvents,
 };
-
-
 
 // //! Delete all events
 // const deleteAllEvents = asyncHandler(async (req, res) => {
