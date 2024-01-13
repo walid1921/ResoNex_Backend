@@ -6,6 +6,8 @@ const cors = require("cors");
 const eventRoute = require("./routes/eventRoute");
 const taskRoute = require("./routes/taskRoute");
 const savedTaskRoute = require("./routes/savedTaskRoute");
+const percentageRoute = require("./routes/percentageRoute")
+const chartHistoryRoute = require("./routes/chartHistoryRoute")
 // const storeAndDeleteRoute = require('./routes/storeAndDeleteRoute')
 const errorMiddleware = require("./middleware/errorMiddleware");
 
@@ -30,6 +32,8 @@ app.options("*", cors(corsOptions));
 app.use("/api/events", eventRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/savedTasks", savedTaskRoute);
+app.use("/api/percentages", percentageRoute)
+app.use("/api/chartHistory", chartHistoryRoute)
 // app.use('/api/storeAndDelete', storeAndDeleteRoute);
 app.use(errorMiddleware);
 
