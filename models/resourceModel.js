@@ -16,15 +16,15 @@ const mongoose = require("mongoose");
 const resourceSchema = new mongoose.Schema({
   name: {
     type: String,
-    // required: [true, "Name is required"],
+    required: [true, "Name is required"],
   },
   path: {
     type: String,
-    // required: [true, "Path is required"],
+    required: [true, "Path is required"],
   },
   icon: {
     type: String,
-    // required: [true, "Icon is required"],
+    required: [true, "Icon is required"],
   },
   data: {
     type: [

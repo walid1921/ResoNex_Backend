@@ -23,7 +23,6 @@ const createResource = asyncHandler(async (req, res) => {
   }
 });
 
-
 //! Delete all resources
 const deleteAllResources = asyncHandler(async (req, res) => {
   try {
@@ -37,52 +36,54 @@ const deleteAllResources = asyncHandler(async (req, res) => {
 
 //! Add data to a specific resource
 const addDataToResource = asyncHandler(async (req, res) => {
-    const { resourceId } = req.params;
-  
-    try {
-      const resource = await Resource.findById(resourceId);
-  
-      if (!resource) {
-        return res.status(404).json({ error: "Resource not found" });
-      }
-  
-      const newData = req.body;
-      resource.data.push(newData);
-  
-      await resource.save();
-  
-      res.status(200).json(resource);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  });
+  const { resourceId } = req.params;
 
-//   //! get a specific resource
-// const addDataToResource = asyncHandler(async (req, res) => {
-//     try {
-//       const { resourceId } = req.params;
-//       const { data } = req.body;
-  
-//       const resource = await Resource.findById(resourceId);
-  
-//       if (!resource) {
-//         res.status(404).json({ error: "Resource not found" });
-//       }
-  
-//       resource.data.push(data);
-//       await resource.save();
-  
-//       res.status(200).json(resource);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: "Internal Server Error" });
-//     }
-//   });
+  try {
+    const resource = await Resource.findById(resourceId);
+
+    if (!resource) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    const newData = req.body;
+    resource.data.push(newData);
+
+    await resource.save();
+
+    res.status(200).json(resource);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//! Delete a specific resource
+const deleteResource = asyncHandler(async (req, res) => {
+  const { resourceId, itemId } = req.params;
+
+  try {
+    const deletedResource = await Resource.findById(resourceId);
+
+    if (!deletedResource) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    // Assuming data is an array of objects with _id properties
+    deletedResource.data.pull({ _id: itemId });
+
+    await deletedResource.save();
+
+    res.status(200).json(deletedResource);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 module.exports = {
   getResources,
   createResource,
   deleteAllResources,
-  addDataToResource
+  addDataToResource,
+  deleteResource,
 };

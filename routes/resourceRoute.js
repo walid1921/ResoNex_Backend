@@ -5,6 +5,7 @@ const {
   createResource,
   deleteAllResources,
   addDataToResource,
+  deleteResource
 } = require("../controllers/resourceController");
 
 //! Get all resources
@@ -18,5 +19,8 @@ router.delete("/", deleteAllResources);
 
 //! Add data to a specific resource
 router.post("/:resourceId", addDataToResource);
+
+//! Delete a specific resource
+router.delete("/:resourceId/:itemId", deleteResource);
 
 module.exports = router;
