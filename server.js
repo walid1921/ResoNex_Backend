@@ -16,6 +16,19 @@ const authMiddleware = require("./middleware/authMiddleware");
 
 // for test
 
+const posts = [
+  {
+    id: 1,
+    username: "john",
+    post: "john1n",
+  },
+  {
+    id: 2,
+    username: "jane",
+    post: "jane123admin",
+  }
+]
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 const MONGO_URL = process.env.MONGO_URL;
@@ -32,12 +45,12 @@ const corsOptions = {
 //! middleware
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
-app.use("/api/events", eventRoute);
-app.use("/api/tasks", taskRoute);
-app.use("/api/savedTasks", savedTaskRoute);
-app.use("/api/percentages", percentageRoute);
-app.use("/api/chartHistory", chartHistoryRoute);
-app.use("/api/resources", resourceRoute);
+app.use("/api/events", authMiddleware, eventRoute);
+app.use("/api/tasks", authMiddleware, taskRoute);
+app.use("/api/savedTasks", authMiddleware, savedTaskRoute);
+app.use("/api/percentages", authMiddleware, percentageRoute);
+app.use("/api/chartHistory", authMiddleware, chartHistoryRoute);
+app.use("/api/resources", authMiddleware, resourceRoute);
 app.use("/api", userRoute );
 // app.use('/api/storeAndDelete', storeAndDeleteRoute);
 app.use(errorMiddleware);
@@ -45,6 +58,10 @@ app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
+
+// app.get("/api/posts", authMiddleware, (req, res) => {
+//   res.json(posts.filter(post => post.username === req.user.name));
+// })
 
 //! Connect to MongoDB Atlas
 mongoose

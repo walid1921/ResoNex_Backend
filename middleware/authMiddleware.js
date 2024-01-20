@@ -5,8 +5,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 
 const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; 
+
+  if (token == null) {
     return res.status(401).send("Unauthorized");
   }
 

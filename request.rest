@@ -1,0 +1,30 @@
+GET http://localhost:5001/api/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJkOTUyNWU1NzAxYmMxNGI3MmMyMyIsImlhdCI6MTcwNTc3MzQxNiwiZXhwIjoxNzA1NzczNDMxfQ.ezmWTtbpuBU1hPO0dJVpLLh-RvybJZoM2nX9URH7EQ4
+
+###
+
+POST http://localhost:5001/api/login
+Content-Type: application/json
+
+{
+    "username": "walidka",
+    "password": "1234567"
+}
+
+###
+
+POST http://localhost:5001/api/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJkOTUyNWU1NzAxYmMxNGI3MmMyMyIsImlhdCI6MTcwNTc3MzkxOH0.E7QcHvR_qZmCICg60qH5nS9OKLzF-pd76y0hkqprrPg"
+}
+
+###
+
+DELETE http://localhost:5001/api/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJkOTUyNWU1NzAxYmMxNGI3MmMyMyIsImlhdCI6MTcwNTc3MzkxOH0.E7QcHvR_qZmCICg60qH5nS9OKLzF-pd76y0hkqprrPg"
+}

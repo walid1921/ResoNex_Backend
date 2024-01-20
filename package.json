@@ -15,7 +15,8 @@
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
-    "nodemonServer": "nodemon server.js"
+    "nodemonServer": "nodemon server.js",
+    "nodemonAuthServer": "nodemon authServer.js"
   },
   "author": "",
   "license": "ISC"
