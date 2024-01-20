@@ -6,11 +6,13 @@ const cors = require("cors");
 const eventRoute = require("./routes/eventRoute");
 const taskRoute = require("./routes/taskRoute");
 const savedTaskRoute = require("./routes/savedTaskRoute");
-const percentageRoute = require("./routes/percentageRoute")
-const resourceRoute = require("./routes/resourceRoute")
-const chartHistoryRoute = require("./routes/chartHistoryRoute")
+const percentageRoute = require("./routes/percentageRoute");
+const resourceRoute = require("./routes/resourceRoute");
+const chartHistoryRoute = require("./routes/chartHistoryRoute");
+const userRoute = require("./routes/userRoute");
 // const storeAndDeleteRoute = require('./routes/storeAndDeleteRoute')
 const errorMiddleware = require("./middleware/errorMiddleware");
+const authMiddleware = require("./middleware/authMiddleware");
 
 // for test
 
@@ -33,9 +35,10 @@ app.options("*", cors(corsOptions));
 app.use("/api/events", eventRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/savedTasks", savedTaskRoute);
-app.use("/api/percentages", percentageRoute)
-app.use("/api/chartHistory", chartHistoryRoute)
-app.use("/api/resources", resourceRoute)
+app.use("/api/percentages", percentageRoute);
+app.use("/api/chartHistory", chartHistoryRoute);
+app.use("/api/resources", resourceRoute);
+app.use("/api", userRoute );
 // app.use('/api/storeAndDelete', storeAndDeleteRoute);
 app.use(errorMiddleware);
 
