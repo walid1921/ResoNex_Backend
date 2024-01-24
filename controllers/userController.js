@@ -9,6 +9,10 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
+// npm uninstall react-circle --legacy-peer-deps
+// npm uninstall react-circular-progressbar --legacy-peer-deps
+//npm uninstall react-progress-bar-plus --legacy-peer-deps
+
 //! user Register
 
 const registerUser = async (req, res) => {
@@ -105,7 +109,9 @@ const logoutUser = asyncHandler(async (req, res) => {
     console.log("Attempting to delete refresh token:", refreshTokenValue);
 
     // Find and delete the refresh token
-    const refreshTokenDoc = await RefreshToken.findOneAndDelete({ token: refreshTokenValue });
+    const refreshTokenDoc = await RefreshToken.findOneAndDelete({
+      token: refreshTokenValue,
+    });
 
     if (!refreshTokenDoc) {
       // Token not found, handle accordingly
@@ -121,7 +127,5 @@ const logoutUser = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
 
 module.exports = { registerUser, loginUser, refreshTokens, logoutUser };
